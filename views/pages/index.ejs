@@ -1,5 +1,30 @@
 <% include ../partials/header %>
 
   <h1><%= pageTitle %></h1>
+    
+    <div class="ui link cards">
+      <% notebooks.forEach((notebooks) => { %>
+        <div class="card">
+          <div class="image">
+            <img src="<%= notebooks.image %>">
+          </div>
+          <div class="content">
+            <a class="header"><%= notebooks.make %></a>
+            <div class="description">
+              <%= notebooks.model %>
+            </div>
+          </div>
+          <div class="extra content">
+            <i class="tags icon"></i>
+            <%= notebooks.price %>
+            <div class="right floated">
+              <button class="ui primary button">
+                Add to Cart
+              </button>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
 
 <% include ../partials/footer %>
