@@ -18,6 +18,8 @@
   "homepage": "https://github.com/Brendon1911/the-notebook-store#readme",
   "dependencies": {
     "ejs": "^2.6.1",
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "mongodb": "^3.1.3",
+    "mongoose": "^5.2.8"
   }
 }

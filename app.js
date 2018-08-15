@@ -1,6 +1,9 @@
 // Load the things we need
 const express = require("express"),
+      mongoose = require("mongoose"),
       app = express();
+      
+mongoose.connect("mongodb://localhost/the_notebook_store", { useNewUrlParser: true });
       
 // Set view engine to ejs
 app.set("view engine", "ejs");
