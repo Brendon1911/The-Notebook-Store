@@ -2,10 +2,11 @@
 const express = require("express"),
       mongoose = require("mongoose"),
       path = require("path"),
+      bodyParser = require("body-parser"),
       app = express();
 
-// Setup database    
-let db = mongoose.connect("mongodb://localhost:27017/the_notebook_store", { useNewUrlParser: true });
+// Connect to database    
+mongoose.connect("mongodb://localhost:27017/the_notebook_store", { useNewUrlParser: true });
 
 // Test database connection
 mongoose.connection.on('connected', (err, db) => {
@@ -15,8 +16,15 @@ mongoose.connection.on('connected', (err, db) => {
     console.log("Connected to " + db);
   }
 });
-      
+
+// Set static file path
 app.use(express.static(path.join(__dirname, 'public')));
+
+// parse requests of content-type - application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }))
+
+// parse requests of content-type - application/json
+app.use(bodyParser.json())
 
 // Set view engine to ejs
 app.set("view engine", "ejs");
@@ -24,31 +32,10 @@ app.set("view engine", "ejs");
 // Render Home page
 app.get("/", (req, res) => {
   
-  let notebooks = [
-      {
-        make: "Dell"   ,
-        model: "Insperion",
-        image: "https://i5.walmartimages.com/asr/30479c85-5ec5-41be-a289-83d235cf0207_1.b94e70cc3d493cac7380cb0ef5aa636e.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF",
-        price: "$100.95"
-      },
-      {
-        make: "Acer"   ,
-        model: "Aspire",
-        image: "https://assets.pcmag.com/media/images/352181-acer-aspire-e1-510p-2671.jpg?width=1000&height=804",
-        price: "$100.95"
-      },
-      {
-        make: "Mecer"   ,
-        model: "Xpression",
-        image: "https://media.takealot.com/covers_tsins/51572818/Z140CPLUS-1-zoom.jpg",
-        price: "$100.95"
-      }
-  ];
-  
   res.render("pages/index", {
-    pageTitle: "All Notebooks",
-    notebooks: notebooks
+    pageTitle: "All Notebooks"
   });
+  
 });
 
 app.listen("8080", (req, res) => {
