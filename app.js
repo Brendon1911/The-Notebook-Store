@@ -9,11 +9,11 @@ const express = require("express"),
 mongoose.connect("mongodb://localhost:27017/the_notebook_store", { useNewUrlParser: true });
 
 // Test database connection
-mongoose.connection.on('connected', (err, db) => {
+mongoose.connection.on('connected', (err) => {
   if (err) {
     console.log(err);
   } else {
-    console.log("Connected to " + db);
+    console.log("Connected to database");
   }
 });
 
