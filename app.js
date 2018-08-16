@@ -2,8 +2,18 @@
 const express = require("express"),
       mongoose = require("mongoose"),
       app = express();
-      
-mongoose.connect("mongodb://localhost/the_notebook_store", { useNewUrlParser: true });
+
+// Setup database    
+let db = mongoose.connect("mongodb://localhost:27017/the_notebook_store", { useNewUrlParser: true });
+
+// Test database connection
+mongoose.connection.on('connected', (err, db) => {
+  if (err) {
+    console.log(err);
+  } else {
+    console.log("Connected to " + db);
+  }
+});
       
 // Set view engine to ejs
 app.set("view engine", "ejs");
