@@ -21,10 +21,10 @@ mongoose.connection.on('connected', (err) => {
 app.use(express.static(path.join(__dirname, 'public')));
 
 // parse requests of content-type - application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // parse requests of content-type - application/json
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 
 // Set view engine to ejs
 app.set("view engine", "ejs");
