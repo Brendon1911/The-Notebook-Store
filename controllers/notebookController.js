@@ -5,7 +5,7 @@ const mongoose = require("mongoose"),
 exports.show_all_notebooks = (req, res) => {
   Notebook.find({}, (err, notebook) => {
     if (err) 
-      res.send(err);
+      return res.send(err);
     res.json(notebook);
   });
 };
@@ -16,7 +16,7 @@ exports.add_a_notebook = (req, res) => {
   
   notebook.save((err, notebook) => {
     if (err)
-      res.send(err);
+      return res.send(err);
     res.json(notebook);
   });
 };
@@ -25,7 +25,7 @@ exports.add_a_notebook = (req, res) => {
 exports.show_a_notebook = (req, res) => {
   Notebook.findById(req.params.notebookId, (err, notebook) => {
     if (err)
-      res.send(err)
+      return res.send(err);
     res.json(notebook);
   });
 };
@@ -36,7 +36,7 @@ exports.update_a_notebook = (req, res) => {
     _id: req.params.notebookId
   }, req.body, { new: true }, (err, notebook) => {
     if (err)
-      res.send(err)
+      return res.send(err);
     res.json(notebook);
   });
 };
@@ -48,7 +48,7 @@ exports.delete_a_notebook = (req, res) => {
     _id: req.params.notebookId
   }, (err, notebook) => {
     if (err)
-      res.send(err)
+      return res.send(err);
     res.json({ message: "Notebook successfuly deleted" });
   });
 };

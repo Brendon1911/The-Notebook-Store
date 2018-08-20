@@ -3,20 +3,20 @@
   <h1><%= pageTitle %></h1>
     
     <div class="ui link cards">
-      <% notebooks.forEach((notebooks) => { %>
+      <% notebooks.forEach((notebook) => { %>
         <div class="card">
           <div class="image">
-            <img src="<%= notebooks.image %>">
+            <img src="<%= notebook.imageURL %>">
           </div>
           <div class="content">
-            <a class="header"><%= notebooks.make %></a>
+            <a class="header"><%= notebook.make %></a>
             <div class="description">
-              <%= notebooks.model %>
+              <%= notebook.model %>
             </div>
           </div>
           <div class="extra content">
             <i class="tags icon"></i>
-            <%= notebooks.price %>
+            <%= notebook.price %>
             <div class="right floated">
               <button class="ui primary button">
                 Add to Cart
